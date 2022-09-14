@@ -1,16 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../redux/actions/users";
 
 const Registeration = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    password2: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    dispatch(createUser(formData));
+    setFormData({ username: "", password: "" });
   };
   const handleChange = (e) => {
     setFormData((prevData) => ({
@@ -38,14 +42,6 @@ const Registeration = () => {
           value={formData.password}
           onChange={handleChange}
           placeholder="password"
-        />
-        <input
-          className="form-control w-25 my-4 m-auto"
-          type="password"
-          name="password2"
-          value={formData.password2}
-          onChange={handleChange}
-          placeholder="confirm password"
         />
         <button className="btn btn-dark" type="submit">
           Submit

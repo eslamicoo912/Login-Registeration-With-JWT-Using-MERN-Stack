@@ -18,10 +18,10 @@ export const createUser = async (req, res) => {
         });
       })
       .catch((error) => {
-        console.log(error.message);
+        res.status(401).json({ status: res.statusCode });
       });
   } catch (error) {
-    console.log(error.message);
+    res.status(401).json({ status: res.statusCode });
   }
 };
 

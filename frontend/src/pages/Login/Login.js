@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/actions/users";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -7,9 +9,11 @@ const Login = () => {
     password: "",
   });
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    dispatch(loginUser(formData));
   };
   const handleChange = (e) => {
     setFormData((prevData) => ({
