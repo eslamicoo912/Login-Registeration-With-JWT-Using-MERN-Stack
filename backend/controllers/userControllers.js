@@ -65,3 +65,29 @@ export const login = async (req, res) => {
 export const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
+
+export const editUser = async (req, res) => {
+  const { username, password } = req.body;
+  const id = req.params.id;
+  try {
+    bcrypt
+      .hash(password, 10)
+      .then(async (hash) => {
+        const updatedUser = await UserModel.findByIdAndUpdate(
+          id,
+          {
+            username: username,
+            password: hash,
+          },
+          { new: true }
+        );
+        res.status(200).json({
+          data: updatedUser,
+          token: generateToken(id),
+        });
+      })
+      .catch((error) => console.log(error.message));
+  } catch (error) {
+    console.log(error.message);
+  }
+};

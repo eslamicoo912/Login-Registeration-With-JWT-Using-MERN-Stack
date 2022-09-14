@@ -8,5 +8,6 @@ routes.post("/", controllers.createUser);
 routes.get("/", controllers.getUsers);
 routes.post("/login", controllers.login);
 routes.get("/me", validate, controllers.getMe);
+routes.post("/:id", controllers.editUser);
 
 export default routes;
