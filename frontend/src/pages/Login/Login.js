@@ -11,9 +11,10 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(formData));
+    await dispatch(loginUser(formData));
+    window.location = "/";
   };
   const handleChange = (e) => {
     setFormData((prevData) => ({

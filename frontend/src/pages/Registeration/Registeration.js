@@ -11,10 +11,11 @@ const Registeration = () => {
     password: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createUser(formData));
+    await dispatch(createUser(formData));
     setFormData({ username: "", password: "" });
+    window.location = "/login";
   };
   const handleChange = (e) => {
     setFormData((prevData) => ({
