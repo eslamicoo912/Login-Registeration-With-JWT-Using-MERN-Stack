@@ -20,7 +20,7 @@ const Registeration = () => {
   };
 
   return (
-    <div className="register text-center">
+    <div className="register text-center mt-5 pt-5">
       <form onSubmit={handleSubmit}>
         <h2>Create an account</h2>
         <input
@@ -45,7 +45,7 @@ const Registeration = () => {
           name="password2"
           value={formData.password2}
           onChange={handleChange}
-          placeholder="password again"
+          placeholder="confirm password"
         />
         <button className="btn btn-dark" type="submit">
           Submit

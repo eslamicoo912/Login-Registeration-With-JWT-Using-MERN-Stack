@@ -20,6 +20,6 @@ export const validate = async (req, res, next) => {
     }
   }
   if (!token) {
-    res.json({ message: "no token" });
+    res.status(401).json({ message: "no token" });
   }
 };

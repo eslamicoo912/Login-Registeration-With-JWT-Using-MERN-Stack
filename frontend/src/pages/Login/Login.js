@@ -19,9 +19,9 @@ const Login = () => {
   };
 
   return (
-    <div className="register text-center">
+    <div className="register text-center mt-5 pt-5">
       <form onSubmit={handleSubmit}>
-        <h2>Create an account</h2>
+        <h2>Sign In</h2>
         <input
           className="form-control w-25 my-4 m-auto"
           type="text"
