@@ -9,5 +9,6 @@ routes.get("/", controllers.getUsers);
 routes.post("/login", controllers.login);
 routes.get("/me", validate, controllers.getMe);
 routes.post("/:id", controllers.editUser);
+routes.get("/:username", controllers.getUser);
 
 export default routes;

@@ -1,12 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { editUser } from "../../redux/actions/users";
 
 const Dashboard = ({ id, username }) => {
   const dispatch = useDispatch();
 
-  const edit = () => {
-    dispatch();
-  };
+  const edit = () => {};
 
   if (id && username) {
     return (

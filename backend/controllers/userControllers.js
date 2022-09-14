@@ -91,3 +91,13 @@ export const editUser = async (req, res) => {
     console.log(error.message);
   }
 };
+
+export const getUser = async (req, res) => {
+  const { username } = req.params;
+  try {
+    const user = await UserModel.findOne({ username: username });
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

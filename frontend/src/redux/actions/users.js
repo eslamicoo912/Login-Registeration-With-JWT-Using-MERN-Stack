@@ -28,4 +28,12 @@ export const loginUser = (userData) => async (dispatch) => {
   }
 };
 
-// edit username and password action
+export const editUser = (id, newData) => async (dispatch) => {
+  const response = await api.editUser(id, newData);
+  try {
+    const action = { type: "EDIT", payload: response.data };
+    dispatch(action);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
