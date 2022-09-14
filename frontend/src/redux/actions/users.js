@@ -42,6 +42,11 @@ export const editUser = (id, newData) => async (dispatch) => {
   try {
     const response = await api.editUser(id, newData);
     const action = { type: "EDIT", payload: response.data };
+    const { _id, username } = response.data.user;
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("id", _id);
+    localStorage.setItem("username", username);
+    console.log(response.data);
     dispatch(action);
   } catch (error) {
     console.log(error.message);

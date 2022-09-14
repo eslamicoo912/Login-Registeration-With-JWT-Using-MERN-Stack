@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { editUser, getUser } from "../../redux/actions/users";
+import { editUser } from "../../redux/actions/users";
 
-const Dashboard = ({ id, username }) => {
+const Dashboard = () => {
+  let id = localStorage.getItem("id");
+  let username = localStorage.getItem("username");
+
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -16,6 +19,8 @@ const Dashboard = ({ id, username }) => {
     e.preventDefault();
     dispatch(editUser(id, formData));
     edit();
+    alert("Editted successfully");
+    window.location = "/";
   };
   const handleChange = (e) => {
     setFormData((prevData) => ({
