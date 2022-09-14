@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editUser } from "../../redux/actions/users";
+import { editUser, getUser } from "../../redux/actions/users";
 
 const Dashboard = ({ id, username }) => {
   const dispatch = useDispatch();
 
-  const edit = () => {};
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [inputs, setInputs] = useState(false);
+
+  const edit = () => {
+    setInputs((state) => !state);
+  };
+
+  const done = (e) => {
+    e.preventDefault();
+    dispatch(editUser(id, formData));
+    edit();
+  };
+  const handleChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   if (id && username) {
     return (
@@ -15,9 +32,34 @@ const Dashboard = ({ id, username }) => {
           <h4 className="card-title my-3 text-muted">
             {username && `username: ${username}`}
           </h4>
-          <button className="btn btn-danger my-3" onClick={() => edit}>
-            Edit Username
+          <button className="btn btn-danger my-3" onClick={edit}>
+            Edit
           </button>
+          {inputs && (
+            <div className="inputs">
+              <form onSubmit={done}>
+                <input
+                  className="w-25 form-control my-3"
+                  type="text"
+                  placeholder="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                />
+                <input
+                  className="w-25 form-control my-3"
+                  type="password"
+                  placeholder="passworrd"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <button className="btn btn-dark my-2" type="submit">
+                  Done
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </div>
     );

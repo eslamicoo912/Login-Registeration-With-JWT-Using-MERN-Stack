@@ -28,9 +28,19 @@ export const loginUser = (userData) => async (dispatch) => {
   }
 };
 
-export const editUser = (id, newData) => async (dispatch) => {
-  const response = await api.editUser(id, newData);
+export const getUser = (username) => async (dispatch) => {
   try {
+    const response = await api.getUser(username);
+    const action = { type: "GET_USER", payload: response.data };
+    dispatch(action);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const editUser = (id, newData) => async (dispatch) => {
+  try {
+    const response = await api.editUser(id, newData);
     const action = { type: "EDIT", payload: response.data };
     dispatch(action);
   } catch (error) {

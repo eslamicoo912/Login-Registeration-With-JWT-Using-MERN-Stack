@@ -82,7 +82,7 @@ export const editUser = async (req, res) => {
           { new: true }
         );
         res.status(200).json({
-          data: updatedUser,
+          user: updatedUser,
           token: generateToken(id),
         });
       })
@@ -93,9 +93,9 @@ export const editUser = async (req, res) => {
 };
 
 export const getUser = async (req, res) => {
-  const { username } = req.params;
+  const { id } = req.params;
   try {
-    const user = await UserModel.findOne({ username: username });
+    const user = await UserModel.findOne({ _id: id });
     res.status(200).json(user);
   } catch (error) {
     console.log(error.message);

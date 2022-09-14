@@ -7,6 +7,8 @@ export default (users = [], action) => {
       return action.payload;
     case "EDIT":
       return action.payload;
+    case "GET_USER":
+      return action.payload;
     default:
       return users;
   }
