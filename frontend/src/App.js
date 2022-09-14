@@ -6,13 +6,19 @@ import Login from "./pages/Login/Login";
 import Header from "./components/Header/Header";
 
 const App = () => {
+  const id = localStorage.getItem("id");
+  const username = localStorage.getItem("username");
+
   return (
     <>
       <Router>
         <div className="container mt-5">
           <Header />
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route
+              path="/"
+              element={<Dashboard id={id} username={username} />}
+            />
             <Route path="/register" element={<Registeration />} />
             <Route path="/login" element={<Login />} />
           </Routes>

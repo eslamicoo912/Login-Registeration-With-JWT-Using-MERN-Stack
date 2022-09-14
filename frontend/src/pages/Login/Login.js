@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/actions/users";
 
@@ -14,7 +14,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(loginUser(formData));
-    window.location = "/";
   };
   const handleChange = (e) => {
     setFormData((prevData) => ({

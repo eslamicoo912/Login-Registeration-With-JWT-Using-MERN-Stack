@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/actions/users";
 
 const Registeration = () => {
@@ -15,7 +15,6 @@ const Registeration = () => {
     e.preventDefault();
     await dispatch(createUser(formData));
     setFormData({ username: "", password: "" });
-    window.location = "/login";
   };
   const handleChange = (e) => {
     setFormData((prevData) => ({

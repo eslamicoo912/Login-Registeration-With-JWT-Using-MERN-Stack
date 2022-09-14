@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
-  const tokenItem = localStorage.getItem("currentToken");
+  const tokenItem = localStorage.getItem("token");
   return (
     <div className="header d-flex justify-content-between">
       <h1>JWT Practice</h1>
@@ -12,6 +12,17 @@ const Header = () => {
           <Link to="/login">Login</Link>
           <Link to="register">Sign up</Link>
         </div>
+      )}
+      {tokenItem && (
+        <Link
+          to="/"
+          onClick={() => {
+            localStorage.clear();
+            window.location = "/login";
+          }}
+        >
+          Logout
+        </Link>
       )}
     </div>
   );

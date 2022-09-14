@@ -6,19 +6,24 @@ export const createUser = (newUser) => async (dispatch) => {
     const action = { type: "CREATE", payload: response.data };
     alert("User created successfully");
     dispatch(action);
+    window.location = "/login";
   } catch (error) {
     console.log(error);
   }
 };
 
 export const loginUser = (userData) => async (dispatch) => {
+  const response = await api.loginUser(userData);
   try {
-    const response = await api.loginUser(userData);
     const action = { type: "LOGIN", payload: response.data };
-    localStorage.setItem("currentToken", response.data.token);
+    localStorage.setItem("id", response.data.id);
+    localStorage.setItem("username", response.data.username);
+    localStorage.setItem("token", response.data.token);
+    console.log(response.data);
     alert("Logged in successfully");
     dispatch(action);
+    window.location = "/";
   } catch (error) {
-    alert("Wrong username or password");
+    alert(response.data.message);
   }
 };
